@@ -4,7 +4,11 @@ public class MainClass {
 
 	
 	public static void main(String[] args){
-		Server  ser = new  Server(5555);
+		if(args.length == 0){
+			System.out.println("Cannot start!!");
+			return;
+		}
+		Server  ser = new  Server(Integer.parseInt(args[0]));
 		ser.start();
 	}
 }
