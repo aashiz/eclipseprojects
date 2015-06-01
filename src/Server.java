@@ -1,8 +1,7 @@
 import java.net.*;
-import java.awt.AWTException;
-import java.awt.SystemTray;
-import java.awt.TrayIcon;
 import java.io.*;
+
+import org.aashiz.server.Clients;
 public class Server {
 
 	static ServerSocket server;
