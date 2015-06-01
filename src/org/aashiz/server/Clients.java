@@ -1,14 +1,11 @@
 package org.aashiz.server;
-import java.net.*;
-import java.io.*;
+import static t.log.log;
 
-import sun.nio.cs.UnicodeEncoder;
-import sun.text.normalizer.UnicodeSet;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.Socket;
+
 import t.Utilities;
-
-import com.sun.xml.internal.fastinfoset.Encoder;
-
-import static t.log.*;
 public class Clients extends Thread  {
 	final int USERIDBYTES = 20;
 	final String ERROR = "404 ERROR OCCURED \n";

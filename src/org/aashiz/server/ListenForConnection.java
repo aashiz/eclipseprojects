@@ -4,9 +4,6 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 import java.net.SocketException;
 
-import t.Utilities;
-import static t.log.* ;
-
 public class ListenForConnection extends Thread{
 	
 	private Socket SocketToListenFor ;
