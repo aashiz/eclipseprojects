@@ -1,3 +1,4 @@
+package org.aashiz.server;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -14,6 +15,13 @@ public class Message {
 		this.MESSAGE = message ;
 	}
 
+	public Message(String string) {
+		// TODO Auto-generated constructor stub
+		this.TO = decodeMessage(string).TO;
+		this.FROM = decodeMessage(string).FROM;
+		this.MESSAGE = decodeMessage(string).MESSAGE;
+	}
+
 	public String createMessage() throws UnsupportedEncodingException 
 	{
 		String imessage = "from=" ;
@@ -21,14 +29,14 @@ public class Message {
 		imessage = imessage + "to=" + URLEncoder.encode(this.TO,"UTF-8") + "&" + 
 				"message=" + URLEncoder.encode(this.MESSAGE,"UTF-8");
 		
-		log("Decoding the one....");
-		try {
-			log(decodeMessage(imessage));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return imessage ;
+//		log("Decoding the one....");
+//		try {
+//			log(decodeMessage(imessage));
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+	return imessage ;
 	}
 	public static Message decodeMessage(String rawMessage) 
 	{
@@ -62,8 +70,8 @@ public class Message {
 	
 	public static void main(String[] args) throws Exception
 	{
-		Message s = new Message("Aashish@gmail.com" , "brsh@gmail.com " , "I love you baby !!!&&## " );
-		s.createMessage();
+		Message ss = new Message(null,null,null);
+		log(ss.FROM);
 		//Message.decodeMessage("from=aasihs&to=asshjhk&message=helloworld");
 	}
 }

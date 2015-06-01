@@ -1,7 +1,10 @@
+package org.aashiz.server;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 import java.net.SocketException;
+
+import t.Utilities;
 import static t.log.* ;
 
 public class ListenForConnection extends Thread{
@@ -38,30 +41,31 @@ public class ListenForConnection extends Thread{
 		System.out.println();
 		int i ;
 		while(CONTINUE){
-//		try {
-//			StringBuilder str = new StringBuilder();
-//			while((i = reader.read()) != -1){
-//				
-//				System.out.print((char) i );
-//			}
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			
-//		}
-			
-			byte[] data = new byte[50] ;
-			try{
-				int ij = this.SocketToListenFor.getInputStream().read(data);
-				if(ij == -1){
+			if(reader!= null){
+				 i = 0 ;
+				 StringBuilder str = new StringBuilder() ;
+				
+					try {
+						while((i =reader.read())!= -1){
+							switch(i){
+							case '@':
+								Message ss = new Message(str.toString());
+								break;
+							default:
+								
+								str.append((char)i);
+								break;
+							}
+							
+						}
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					//Socket closed the connection
 					CONTINUE = false;
-				}
-			}catch(IOException ex){
-				CONTINUE=false;
+				
 			}
-//		CONTINUE = false;
-		String input = Utilities.toString(data);
-		ClientManager.broadCastMessage(input);
-		log(input);
 		}
 		System.out.println("Socket not responding...");
 		ClientManager.deleteClient(this.client);
